@@ -94,7 +94,7 @@ def delete_item():
 # Route to serve the HTML page
 @app.route('/')
 def home():
-    return render_template('manage_items.html')
+    return render_template('prices.html')
 
 @app.route('/get_suggestions', methods=['GET'])
 def get_suggestions():

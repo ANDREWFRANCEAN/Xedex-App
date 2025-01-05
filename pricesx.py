@@ -8,7 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Path to the JSON data file
-DATA_FILE = 'data.json'
+DATA_FILE = os.path.join(os.path.dirname(__file__), 'data.json')
 
 
 # Load data from JSON file

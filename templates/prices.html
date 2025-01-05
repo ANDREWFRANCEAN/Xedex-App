@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Search with Admin Access</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #1e1e2f, #2c2c4e);
+            color: #eaeaea;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        input[type="text"], input[type="password"], input[type="number"] {
+            width: 600px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background-color: #2c2c4e;
+            color: #ffffff;
+            font-size: 1em;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        input[type="password"], input[type="number"]{
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            background-color: #2c2c4e;
+            color: #ffffff;
+            font-size: 1em;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        button {
+            padding: 12px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #ffffff;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        button:active {
+            transform: scale(1);
+        }
+
+        /* Suggestion Box Styles */
+        #suggestion_box {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            background-color: #2c2c4e;
+            width: 100%; /* Matches the container width */
+            color: #ffffff;
+            border-radius: 8px;
+            top: 100%; /* Places it directly below the input */
+            display: none;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .suggestion {
+            padding: 8px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .suggestion:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Login Modal Styles */
+        #login_modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1e1e2f;
+            border-radius: 12px;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            width: 350px;
+            text-align: center;
+        }
+
+        #modal_overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+        }
+
+        .modal_button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px 0;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Preturi Consumabile Xedex</h1>
+
+    <!-- Search Item -->
+   <h2>Cauta preturi:</h2>
+<div style="position: relative; width: 600px;">
+    <input type="text" id="search_item_name" placeholder="Scrie pentru a cauta un produs" oninput="showSuggestions()" oninput="showSuggestions()"
+        onkeyup="handleEnter(event)">
+    <div id="suggestion_box"></div>
+</div>
+<button onclick="searchItem()">Cauta</button>
+<div id="search_result" style="display: none;"></div>
+
+
+    <!-- Admin Access Button -->
+    <button onclick="showLogin()">Acces Admin</button>
+
+    <!-- Admin Controls -->
+   <div id="admin_controls" style="display: none;">
+    <h2>Update/Delete Items</h2>
+    <input type="text" id="item_name" placeholder="Item Name">
+    <input type="number" id="item_price" placeholder="Price">
+    <button onclick="addOrUpdateItem()">Add/Update Item</button>
+    <input type="text" id="delete_item_name" placeholder="Item Name">
+    <button onclick="deleteItem()">Delete Item</button>
+</div>
+
+    <!-- Login Modal -->
+    <div id="modal_overlay"></div>
+    <div id="login_modal">
+        <h2>Admin Login</h2>
+        <p>Enter your passkey to access admin controls:</p>
+        <input type="password" id="passkey_input" placeholder="Enter Passkey">
+        <button class="modal_button" onclick="authenticate()">Submit</button>
+        <button class="modal_button" onclick="hideLogin()">Cancel</button>
+    </div>
+
+    <script>
+        const BASE_URL = 'http://192.168.0.107:5000';
+        let isAdminAuthenticated = false;
+
+        // Show the login modal
+        function showLogin() {
+            document.getElementById('modal_overlay').style.display = 'block';
+            document.getElementById('login_modal').style.display = 'block';
+        }
+
+        // Hide the login modal
+        function hideLogin() {
+            document.getElementById('modal_overlay').style.display = 'none';
+            document.getElementById('login_modal').style.display = 'none';
+        }
+
+        // Authenticate the admin
+        function authenticate() {
+    const passkey = document.getElementById('passkey_input').value;
+
+    fetch(`${BASE_URL}/validate_passkey`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ passkey })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Admin access granted!');
+                isAdminAuthenticated = true;
+                hideLogin();
+                document.getElementById('admin_controls').style.display = 'block';
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error validating passkey:', error);
+            alert('Failed to validate passkey. Please try again.');
+        });
+}
+
+
+        // Show suggestions as the user types
+        function showSuggestions() {
+            const query = document.getElementById('search_item_name').value.trim();
+
+            if (!query) {
+                document.getElementById('suggestion_box').style.display = 'none';
+                return;
+            }
+
+            fetch(`${BASE_URL}/get_suggestions?query=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(suggestions => {
+                    const suggestionBox = document.getElementById('suggestion_box');
+                    suggestionBox.innerHTML = ''; // Clear previous suggestions
+
+                    if (suggestions.length > 0) {
+                        suggestions.forEach(suggestion => {
+                            const div = document.createElement('div');
+                            div.classList.add('suggestion');
+                            div.innerText = suggestion;
+                            div.onclick = () => selectSuggestion(suggestion);
+                            suggestionBox.appendChild(div);
+                        });
+                        suggestionBox.style.display = 'block';
+                    } else {
+                        suggestionBox.style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Error fetching suggestions:', error));
+        }
+
+        // Set the clicked suggestion as the input value
+        function selectSuggestion(suggestion) {
+            document.getElementById('search_item_name').value = suggestion;
+            document.getElementById('suggestion_box').style.display = 'none';
+        }
+
+        // Search for an item
+        function searchItem() {
+            const itemName = document.getElementById('search_item_name').value.trim();
+
+            if (!itemName) {
+                alert('Please enter an item name to search');
+                return;
+            }
+
+            fetch(`${BASE_URL}/get_price?item_name=${encodeURIComponent(itemName)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Item not found');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+            document.getElementById('search_result').style.display = 'block';
+            document.getElementById('search_result').innerHTML = `
+                <div style="
+                    padding: 20px;
+                    border: 2px solid #4e54c8;
+                    border-radius: 8px;
+                    background-color: #2c2c4e;
+                    color: #ffffff;
+                    text-align: center; /* Centers the text */
+                ">
+                    <p style="margin: 0; font-size: 1.2em;">Pretul produsului <strong>${data.item_name}</strong> este:</p>
+                    <p style="margin: 20px 0 0; font-size: 2.5em; font-weight: bold; color: #8f94fb;">${data.price} RON</p>
+                </div>
+            `;
+        })
+                .catch(error => {
+                    console.error('Error searching for item:', error);
+                    document.getElementById('search_result').innerText = error.message;
+                });
+        }
+
+        // Add or update an item
+        function addOrUpdateItem() {
+            if (!isAdminAuthenticated) {
+                alert('Admin access required to perform this action.');
+                return;
+            }
+
+            const name = document.getElementById('item_name').value.trim();
+            const price = document.getElementById('item_price').value;
+
+            if (!name || !price || price <= 0) {
+                alert('Please provide a valid name and a positive price');
+                return;
+            }
+
+            fetch(`${BASE_URL}/add_item`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, price: parseFloat(price) })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                })
+                .catch(error => {
+                    console.error('Error adding/updating item:', error);
+                    alert('Failed to add/update item. Please try again.');
+                });
+        }
+        function handleEnter(event) {
+                if (event.key === "Enter") {
+                 searchItem(); // Call the search function when Enter is pressed
+                                            }
+        }
+        // Delete an item
+        function deleteItem() {
+            if (!isAdminAuthenticated) {
+                alert('Admin access required to perform this action.');
+                return;
+            }
+
+            const name = document.getElementById('delete_item_name').value.trim();
+
+            if (!name) {
+                alert('Please provide the item name to delete');
+                return;
+            }
+
+            fetch(`${BASE_URL}/delete_item`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                })
+                .catch(error => {
+                    console.error('Error deleting item:', error);
+                    alert('Failed to delete item. Please try again.');
+                });
+        }
+    </script>
+</body>
+</html>

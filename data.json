@@ -1,0 +1,314 @@
+[
+    {
+        "name": "CASTROL EDGE 5W40 /5L",
+        "price": "190"
+    },
+    {
+        "name": "CASTROL EDGE 5W40 /4L",
+        "price": "155"
+    },
+    {
+        "name": "CASTROL EDGE 5W40 /1L",
+        "price": "45"
+    },
+    {
+        "name": "CASTROL EDGE FST 5W30 /4L",
+        "price": "185"
+    },
+    {
+        "name": "CASTROL EDGE FST 5W30 /5L",
+        "price": "230"
+    },
+    {
+        "name": "CASTROL EDGE FST 5W30 /1L",
+        "price": "50"
+    },
+    {
+        "name": "CASTROL EDGE 0W30 /1L",
+        "price": "65"
+    },
+    {
+        "name": "CASTROL EDGE 0W30 /4L",
+        "price": "220"
+    },
+    {
+        "name": "CASTROL EDGE 0W40 /4L",
+        "price": "200"
+    },
+    {
+        "name": "CASTROL EDGE  0W20/4L",
+        "price": "250"
+    },
+    {
+        "name": "CASTROL EDGE 0W20/1L",
+        "price": "65"
+    },
+    {
+        "name": "CASTROL EDGE SPORT 0W40 /1L",
+        "price": "50"
+    },
+    {
+        "name": "CASTROL EDGE 10W60 /4L",
+        "price": "225"
+    },
+    {
+        "name": "CASTROL MAGNATEC C3 5W40 /5L",
+        "price": "175"
+    },
+    {
+        "name": "CASTROL MAGNATEC C3 5W40 /4L",
+        "price": "145"
+    },
+    {
+        "name": "CASTROL MAGNATEC C3 5W40 /1L",
+        "price": "40"
+    },
+    {
+        "name": "CASTROL MAGNATEC DIESEL 5W40 DPF /5L",
+        "price": "175"
+    },
+    {
+        "name": "CASTROL MAGNATEC DIESEL 5W40 DPF /4L",
+        "price": "145"
+    },
+    {
+        "name": "CASTROL MAGNATEC DIESEL 5W40 DPF /1L",
+        "price": "40"
+    },
+    {
+        "name": "CASTROL GTX 10W40 /5L",
+        "price": "0"
+    },
+    {
+        "name": "CASTROL GTX 15W40 /4L",
+        "price": "110"
+    },
+    {
+        "name": "CASTROL GTX 15W40 /1L",
+        "price": "35"
+    },
+    {
+        "name": "CASTROL TECTION 15W40 /5L",
+        "price": "95"
+    },
+    {
+        "name": "CASTROL MAGNATEC 15W40 /4L",
+        "price": "100"
+    },
+    {
+        "name": "CASTROL MAGNATEC 15W40 /1L",
+        "price": "30"
+    },
+    {
+        "name": "CASTROL MAGNATEC DIESEL 10W40 /4L",
+        "price": "125"
+    },
+    {
+        "name": "CASTROL MAGNATEC DIESEL 10W40 /5L",
+        "price": "155"
+    },
+    {
+        "name": "CASTROL MAGNATEC DIESEL 10W40 /1L",
+        "price": "35"
+    },
+    {
+        "name": "CASTROL MAGNATEC 10W40 /5L",
+        "price": "155"
+    },
+    {
+        "name": "CASTROL MAGNATEC 10W40 /4L",
+        "price": "125"
+    },
+    {
+        "name": "CASTROL MAGNATEC 10W40 /1L",
+        "price": "35"
+    },
+    {
+        "name": "CASTROL SYNTRANS 75W90 /1L",
+        "price": "60"
+    },
+    {
+        "name": "CASTROL ATF DEX III /1L",
+        "price": "45"
+    },
+    {
+        "name": "CASTROL TRANSMAX DEX III /1L",
+        "price": "40"
+    },
+    {
+        "name": "CASTROL MANUAL EP 80W90 /1L",
+        "price": "35"
+    },
+    {
+        "name": "CASTROL AXLE EPX 80W90",
+        "price": "35"
+    },
+    {
+        "name": "CASTROL 75W90",
+        "price": "60"
+    },
+    {
+        "name": "MAGNATEC PROFESIONAL  5W30 A5/5L( FORD)",
+        "price": "225"
+    },
+    {
+        "name": "MAGNATEC PROFESIONAL  5W30  A5/1L( FORD)",
+        "price": "50"
+    },
+    {
+        "name": "CASTROL MANUAL TAF-X /1L",
+        "price": "45"
+    },
+    {
+        "name": "MAGNATEC PROFESIONAL  5W20 E/5L( FORD)",
+        "price": "240"
+    },
+    {
+        "name": "MAGNATEC PROFESIONAL  5W20 E/1L( FORD)",
+        "price": "50"
+    },
+    {
+        "name": "MAGNATEC PROFESIONAL  0W30 D/1L ( FORD)",
+        "price": "60"
+    },
+    {
+        "name": "CASTROL 0W30/4L",
+        "price": "200"
+    },
+    {
+        "name": "CASTROL 0W30/5L",
+        "price": "295"
+    },
+    {
+        "name": "CASTROL 0W30/1L",
+        "price": "65"
+    },
+    {
+        "name": "CASTROL RN17 5W30/5L",
+        "price": "145"
+    },
+    {
+        "name": "CASTROL RN17 5W30/1L",
+        "price": "35"
+    },
+    {
+        "name": "VATOIL SYNTRAG RPC 75W80 /1L",
+        "price": "N/A"
+    },
+    {
+        "name": "MOBIL ATF 220 /1L",
+        "price": "40"
+    },
+    {
+        "name": "MOBIL SHC 75W90 /1L",
+        "price": "55"
+    },
+    {
+        "name": "KROSS TRANS HD 80W90 /1L",
+        "price": "30"
+    },
+    {
+        "name": "KROSS TRANS 75W90 /1L",
+        "price": "40"
+    },
+    {
+        "name": "CITIGO MULTI-PURPOSE /1L",
+        "price": "25"
+    },
+    {
+        "name": "CITGO MULTI-VEHICLE /1L",
+        "price": "35"
+    },
+    {
+        "name": "FINKE FINKOGEAR SYNTH 75W90 /1L",
+        "price": "45"
+    },
+    {
+        "name": "KROSS",
+        "price": "N/A"
+    },
+    {
+        "name": "KROSS  DEX 2",
+        "price": "35"
+    },
+    {
+        "name": "KROSS  DEX 3",
+        "price": "35"
+    },
+    {
+        "name": "25587 KROSS CELERA 10W40 1 L",
+        "price": "30"
+    },
+    {
+        "name": "25588 KROSS CELERA 10W40 4L",
+        "price": "95"
+    },
+    {
+        "name": "KROSS TRANS HD 80W90 /1L",
+        "price": "30"
+    },
+    {
+        "name": "KROSS TRANS 75W90 /1L",
+        "price": "40"
+    },
+    {
+        "name": "KROSS TRANS  75W80 /1L",
+        "price": "40"
+    },
+    {
+        "name": "G12 1L",
+        "price": "13"
+    },
+    {
+        "name": "G12 3L",
+        "price": "40"
+    },
+    {
+        "name": "G12 5L",
+        "price": "75"
+    },
+    {
+        "name": "G11 1L",
+        "price": "12"
+    },
+    {
+        "name": "G11 3L",
+        "price": "35"
+    },
+    {
+        "name": "G11 5L",
+        "price": "65"
+    },
+    {
+        "name": "G13 1.5L G12+ 1.5L (HEPU)",
+        "price": "45"
+    },
+    {
+        "name": "G11 1.5L G12 1.5L (HEPU)",
+        "price": "35"
+    },
+    {
+        "name": "Tip D (Galben)  3L",
+        "price": "45"
+    },
+    {
+        "name": "G12 20L",
+        "price": "11"
+    },
+    {
+        "name": "Antigel Verde/Galben 1L",
+        "price": "20"
+    },
+    {
+        "name": "Antigel verde 3L",
+        "price": "50"
+    },
+    {
+        "name": "Prolong mic 236ml",
+        "price": "135"
+    },
+    {
+        "name": "Prolong mare 354ml",
+        "price": 1000
+    }
+]
